@@ -3,3 +3,13 @@ server:
   servlet:
     encoding:
       force-response: true
+
+spring:
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database : mysql
+    hibernate.ddl-auto : create
+    properties:
+      hibernate:
+        format_sql: true
