@@ -1,5 +1,10 @@
 package com.mustache.bbs.domain.dto;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public class ArticleDto {
     private Long id;
     private final String title;
@@ -8,11 +13,5 @@ public class ArticleDto {
     public ArticleDto(String title, String content) {
         this.title = title;
         this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "ArticleDto{" +
-                "title='" + title + '\'' + ", content='" + content + '\'' + '}';
     }
 }
