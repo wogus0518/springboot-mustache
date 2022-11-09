@@ -7,11 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +32,7 @@ public class ArticleController {
     public String selectAll(Model model) {
         List<Article> articles = articleRepository.findAll();
         model.addAttribute("articles", articles);
+        model.addAttribute("message", "메시지");
         return "list";
     }
 
@@ -47,7 +48,7 @@ public class ArticleController {
         Article article = form.toEntity();
         Article save = articleRepository.save(article);
         log.info("id={}", save.getId());
-        return "redirect:/articles/" + save.getId();
+        return "redirect:/articles/list/" + save.getId();
     }
 
     @GetMapping("/list/{id}")
@@ -59,5 +60,34 @@ public class ArticleController {
         } else {
             return "error";
         }
+    }
+
+    @GetMapping("/list/{id}/edit")
+    public String editPage(@PathVariable Long id, Model model) {
+        Optional<Article> optArticle = articleRepository.findById(id);
+        if (optArticle.isPresent()) {
+            model.addAttribute("article", optArticle.get());
+            return "edit";
+        } else {
+            model.addAttribute("message", "id=" + id + " 가 없습니다.");
+            return "error";
+        }
+    }
+
+    @PutMapping("/{id}/update")
+    public String update(@PathVariable Long id, ArticleDto articleDto) {
+        Article article = new Article(id, articleDto.getTitle(), articleDto.getContent());
+        Article save = articleRepository.save(article);
+        log.info("id={}", save.getId());
+        return "redirect:/articles/list/" + save.getId();
+    }
+
+    @GetMapping("/list/{id}/delete")
+    public void delete(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        articleRepository.deleteById(id);
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('삭제가 완료되었습니다.'); location.href='/articles/list'</script>");
+        out.flush();
     }
 }

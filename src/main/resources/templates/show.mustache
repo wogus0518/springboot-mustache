@@ -1,15 +1,19 @@
 {{>layouts/header}}
 <div>
+<!--    모델에 넘어온 article을 사용  -->
     {{#article}}
-        <form>
+        <form class="container">
             <div class="mb-3">
                 <label class="form-label">제목</label>
-                <input type="text" class="form-control" name="title" value={{title}} disabled>
+                <input class="form-control" name="title" value="{{title}}" disabled>
             </div>
             <div class="mb-3">
                 <label class="form-label">내용</label>
                 <textarea class="form-control" rows="3" name="content" disabled>{{content}}</textarea>
             </div>
+            <a href="/articles/list/{{id}}/edit" class="btn btn-warning">수정</a>
+            <a href="/articles/list/{{id}}/delete" class="btn btn-danger">삭제</a>
+
         </form>
     {{/article}}
     <a href="/articles/new">new article</a>

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Getter
 public class Article {
