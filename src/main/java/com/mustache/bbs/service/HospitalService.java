@@ -30,7 +30,7 @@ public class HospitalService {
     }
 
     @Transactional
-    public List<Hospital> getHospitalListBySearchOption(String businessTypeName, String location, Pageable pageable) {
+    public Page<Hospital> getHospitalListBySearchOption(String businessTypeName, String location, Pageable pageable) {
         return hospitalRepository.findByBusinessTypeNameAndFullAddressContaining(businessTypeName, location, pageable);
     }
 }

@@ -3,10 +3,13 @@ package com.mustache.bbs.domain.dto;
 import lombok.Getter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter
 @ToString
 public class SearchDto {
     private final String businessTypeName;
+    @NotBlank
     private final String location;
 
     public SearchDto(String businessTypeName, String location) {
