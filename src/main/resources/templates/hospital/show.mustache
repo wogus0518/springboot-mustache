@@ -1,0 +1,105 @@
+{{>layouts/header}}
+<div>
+    {{#hospital}}
+        <form class="container">
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">번호</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{id}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">개방서비스명</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{openServiceName}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">개방자치단체코드</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{openLocalGovernmentCode}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">관리번호</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{managementNumber}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">인허가일자</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{license_date}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">영업상태구분</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{businessStatus}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">영업상태코드</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{businessStatusCode}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">소재지전화</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{phone}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">소재지전체주소</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{fullAddress}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">도로명전체주소</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{roadNameAddress}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">병원이름</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{hospitalName}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">업태구분명</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{businessTypeName}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">의료인수</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{healthcareProviderCount}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">입원실수</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{patientRoomCount}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">병상수</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{totalNumberOfBeds}}" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">총면적</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="title" value="{{totalAreaSize}}" disabled>
+                </div>
+            </div>
+        </form>
+    {{/hospital}}
+</div>
+{{>layouts/footer}}
+

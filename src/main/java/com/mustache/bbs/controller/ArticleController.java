@@ -33,7 +33,7 @@ public class ArticleController {
         List<Article> articles = articleRepository.findAll();
         model.addAttribute("articles", articles);
         model.addAttribute("message", "메시지");
-        return "list";
+        return "articles/list";
     }
 
     @GetMapping(value = "/new")
@@ -56,7 +56,7 @@ public class ArticleController {
         Optional<Article> optArticle = articleRepository.findById(id);
         if (optArticle.isPresent()) {
             model.addAttribute("article", optArticle.get());
-            return "show";
+            return "articles/show";
         } else {
             return "error";
         }
@@ -67,7 +67,7 @@ public class ArticleController {
         Optional<Article> optArticle = articleRepository.findById(id);
         if (optArticle.isPresent()) {
             model.addAttribute("article", optArticle.get());
-            return "edit";
+            return "articles/edit";
         } else {
             model.addAttribute("message", "id=" + id + " 가 없습니다.");
             return "error";
