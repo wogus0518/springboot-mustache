@@ -30,8 +30,7 @@ public class HospitalController {
     @GetMapping("/list")
     public String findByOption(@RequestParam(required = false) String businessTypeName,
                               @RequestParam(required = false) String location,
-                              Model model,
-                              @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+                              Model model, @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
 
         if (businessTypeName==null && location==null) {
             Page<Hospital> hospitals = hospitalService.getHospitalList(pageable);
@@ -44,15 +43,16 @@ public class HospitalController {
                 model.addAttribute("error", "좀 더 광범위한 지역명이 필요합니다.");
             }
             modelAttributer(model, pageable, hospitals);
+            model.addAttribute("businessTypeName", businessTypeName);
+            model.addAttribute("location", location);
         }
-
         return "hospital/hospitalList";
     }
 
     @PostMapping("/list")
     public String findByLocation(@Validated SearchDto searchDto, BindingResult bindingResult,
                                  Model model, RedirectAttributes redirectAttributes,
-                                 @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+                                 @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
 
         boolean selectBusinessTypeName = searchDto.getBusinessTypeName().equals("업태구분명 선택");
 
@@ -81,7 +81,10 @@ public class HospitalController {
 
     private static void modelAttributer(Model model, Pageable pageable, Page<Hospital> hospitals) {
         model.addAttribute("hospitals", hospitals);
-        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next", pageable.next().getPageNumber());
+
+        if (pageable.hasPrevious()) model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+
+        if (hospitals.hasNext()) model.addAttribute("next", pageable.next().getPageNumber());
+
     }
 }
