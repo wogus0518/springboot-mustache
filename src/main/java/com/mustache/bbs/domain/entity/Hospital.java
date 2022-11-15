@@ -1,16 +1,13 @@
 package com.mustache.bbs.domain.entity;
 
+import com.mustache.bbs.domain.dto.HospitalResponse;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@ToString
 @Getter
-@NoArgsConstructor
 @Table(name = "nation_wide_hospitals")
 public class Hospital {
 
@@ -62,4 +59,24 @@ public class Hospital {
 
     @Column(name = "total_area_size")
     private Float totalAreaSize;
+
+    //HospitalEntity를 HospitalResponse DTO로 만들어주는 부분
+    public static HospitalResponse of(Hospital hospital) {
+        return new HospitalResponse(hospital.getId(),
+                hospital.getOpenServiceName(),
+                hospital.getOpenLocalGovernmentCode(),
+                hospital.getManagementNumber(),
+                hospital.getLicense_date(),
+                hospital.getBusinessStatus(),
+                hospital.getBusinessStatusCode(),
+                hospital.getPhone(),
+                hospital.getFullAddress(),
+                hospital.getRoadNameAddress(),
+                hospital.getHospitalName(),
+                hospital.getBusinessTypeName(),
+                hospital.getHealthcareProviderCount(),
+                hospital.getPatientRoomCount(),
+                hospital.getTotalNumberOfBeds(),
+                hospital.getTotalAreaSize());
+    }
 }
