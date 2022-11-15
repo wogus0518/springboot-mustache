@@ -4,6 +4,7 @@ package com.mustache.bbs.controller;
 import com.mustache.bbs.domain.dto.HospitalResponse;
 import com.mustache.bbs.domain.entity.Hospital;
 import com.mustache.bbs.repository.HospitalRepository;
+import com.mustache.bbs.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +19,11 @@ import java.util.Optional;
 @RequestMapping("/api/v1/hospitals")
 public class HospitalRestController {
 
-    private final HospitalRepository hospitalRepository;
+    private final HospitalService hospitalService;
 
     @GetMapping("/{id}")
     public ResponseEntity<HospitalResponse> get(@PathVariable Integer id) {
-        Optional<Hospital> optHospital = hospitalRepository.findById(id);
-        return ResponseEntity.ok().body(Hospital.of(optHospital.get()));
+        HospitalResponse hospitalResponse = hospitalService.getHospitalResponseById(id);
+        return ResponseEntity.ok().body(hospitalResponse);
     }
 }

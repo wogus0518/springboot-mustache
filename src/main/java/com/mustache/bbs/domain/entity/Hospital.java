@@ -63,20 +63,22 @@ public class Hospital {
     //HospitalEntity를 HospitalResponse DTO로 만들어주는 부분
     public static HospitalResponse of(Hospital hospital) {
         return new HospitalResponse(hospital.getId(),
-                hospital.getOpenServiceName(),
-                hospital.getOpenLocalGovernmentCode(),
-                hospital.getManagementNumber(),
-                hospital.getLicense_date(),
-                hospital.getBusinessStatus(),
+//                hospital.getOpenServiceName(),
+//                hospital.getOpenLocalGovernmentCode(),
+//                hospital.getManagementNumber(),
+//                hospital.getLicense_date(),
+//                hospital.getBusinessStatus(),
                 hospital.getBusinessStatusCode(),
+                "상태",
                 hospital.getPhone(),
                 hospital.getFullAddress(),
-                hospital.getRoadNameAddress(),
+//                hospital.getRoadNameAddress(),
                 hospital.getHospitalName(),
-                hospital.getBusinessTypeName(),
-                hospital.getHealthcareProviderCount(),
-                hospital.getPatientRoomCount(),
-                hospital.getTotalNumberOfBeds(),
-                hospital.getTotalAreaSize());
+                hospital.getBusinessTypeName()
+//                hospital.getHealthcareProviderCount(),
+//                hospital.getPatientRoomCount(),
+//                hospital.getTotalNumberOfBeds(),
+//                hospital.getTotalAreaSize()
+        );
     }
 }

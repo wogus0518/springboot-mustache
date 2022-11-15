@@ -11,19 +11,24 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class HospitalResponse {
     private Integer id;
-    private String openServiceName;
-    private Integer openLocalGovernmentCode;
-    private String managementNumber;
-    private LocalDateTime license_date;
-    private Byte businessStatus;
+//    private String openServiceName;
+//    private Integer openLocalGovernmentCode;
+//    private String managementNumber;
+//    private LocalDateTime license_date;
+//    private Byte businessStatus;
     private Byte businessStatusCode;
+    private String businessStatusName;
     private String phone;
     private String fullAddress;
-    private String roadNameAddress;
+//    private String roadNameAddress;
     private String hospitalName;
     private String businessTypeName;
-    private Integer healthcareProviderCount;
-    private Integer patientRoomCount;
-    private Integer totalNumberOfBeds;
-    private Float totalAreaSize;
+//    private Integer healthcareProviderCount;
+//    private Integer patientRoomCount;
+//    private Integer totalNumberOfBeds;
+//    private Float totalAreaSize;
+
+    public void setBusinessStatusName(String businessStatusName) {
+        this.businessStatusName = businessStatusName;
+    }
 }

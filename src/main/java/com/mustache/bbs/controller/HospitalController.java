@@ -74,8 +74,8 @@ public class HospitalController {
     @GetMapping("/list/{id}")
     public String showHospital(@PathVariable int id, Model model) {
 
-        Optional<Hospital> optHospital = hospitalService.getHospitalById(id);
-        optHospital.ifPresent(hospital -> model.addAttribute("hospital", hospital));
+        Hospital hospital = hospitalService.getHospitalById(id);
+        model.addAttribute("hospital", hospital);
         return "hospital/show";
     }
 
