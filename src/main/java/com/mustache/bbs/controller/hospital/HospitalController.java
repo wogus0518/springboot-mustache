@@ -1,7 +1,7 @@
-package com.mustache.bbs.controller;
+package com.mustache.bbs.controller.hospital;
 
-import com.mustache.bbs.domain.dto.SearchDto;
-import com.mustache.bbs.domain.entity.Hospital;
+import com.mustache.bbs.domain.dto.hospital.SearchDto;
+import com.mustache.bbs.domain.entity.hospital.Hospital;
 import com.mustache.bbs.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.Optional;
 
 
 @Slf4j

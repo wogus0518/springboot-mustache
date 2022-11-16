@@ -1,9 +1,7 @@
-package com.mustache.bbs.controller;
+package com.mustache.bbs.controller.hospital;
 
 
-import com.mustache.bbs.domain.dto.HospitalResponse;
-import com.mustache.bbs.domain.entity.Hospital;
-import com.mustache.bbs.repository.HospitalRepository;
+import com.mustache.bbs.domain.dto.hospital.HospitalResponse;
 import com.mustache.bbs.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

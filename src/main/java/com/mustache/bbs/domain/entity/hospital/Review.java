@@ -1,4 +1,4 @@
-package com.mustache.bbs.domain.entity;
+package com.mustache.bbs.domain.entity.hospital;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

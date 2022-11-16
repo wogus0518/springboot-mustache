@@ -1,6 +1,6 @@
-package com.mustache.bbs.domain.entity;
+package com.mustache.bbs.domain.entity.hospital;
 
-import com.mustache.bbs.domain.dto.HospitalResponse;
+import com.mustache.bbs.domain.dto.hospital.HospitalResponse;
 import lombok.Getter;
 
 import javax.persistence.*;
