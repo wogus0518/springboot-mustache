@@ -72,6 +72,9 @@ public class Hospital {
     @OneToMany(mappedBy = "hospital")
     private List<Review> reviews = new ArrayList<>();
 
+    @Column(name = "review_count")
+    private Integer reviewCount;
+
     //HospitalEntity를 HospitalResponse DTO로 만들어주는 부분
     public static HospitalResponse of(Hospital hospital) {
         return new HospitalResponse(hospital.getId(),
@@ -92,5 +95,9 @@ public class Hospital {
 //                hospital.getTotalNumberOfBeds(),
 //                hospital.getTotalAreaSize()
         );
+    }
+
+    public void setReviewCount(Integer reviewCount) {
+        this.reviewCount = reviewCount;
     }
 }

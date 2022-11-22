@@ -50,7 +50,7 @@
         <th scope="col">병원명</th>
         <th scope="col">전화번호</th>
         <th scope="col">주소</th>
-<!--        <th scope="col">리뷰 수</th>-->
+        <th scope="col">리뷰 수</th>
     </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -60,6 +60,7 @@
             <td><a href="/hospital/list/{{id}}">{{hospitalName}}</a></td>
             <td>{{phone}}</td>
             <td>{{fullAddress}}</td>
+            <td>{{reviewCount}}</td>
         </tr>
     {{/hospitals}}
     </tbody>

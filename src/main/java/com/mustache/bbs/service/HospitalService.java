@@ -25,8 +25,11 @@ public class HospitalService {
 
     @Transactional
     public void addReview(ReviewDto reviewDto, int id) {
-        Review review = new Review(reviewDto.getNickname(), reviewDto.getContent(), hospitalRepository.findById(id).get());
+        Hospital hospital = hospitalRepository.findById(id).get();
+        Review review = new Review(reviewDto.getNickname(), reviewDto.getContent(), hospital);
         reviewRepository.save(review);
+
+        hospital.setReviewCount(hospital.getReviews().size()+1);
     }
 
     @Transactional
