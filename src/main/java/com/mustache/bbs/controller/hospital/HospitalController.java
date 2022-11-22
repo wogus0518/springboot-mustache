@@ -1,7 +1,10 @@
 package com.mustache.bbs.controller.hospital;
 
+import com.mustache.bbs.domain.dto.hospital.ReviewDto;
 import com.mustache.bbs.domain.dto.hospital.SearchDto;
 import com.mustache.bbs.domain.entity.hospital.Hospital;
+import com.mustache.bbs.domain.entity.hospital.Review;
+import com.mustache.bbs.repository.HospitalRepository;
 import com.mustache.bbs.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +18,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
 @Slf4j
@@ -71,10 +78,19 @@ public class HospitalController {
 
     @GetMapping("/list/{id}")
     public String showHospital(@PathVariable int id, Model model) {
-
         Hospital hospital = hospitalService.getHospitalById(id);
         model.addAttribute("hospital", hospital);
+        model.addAttribute("reviews", hospital.getReviews());
         return "hospital/show";
+    }
+
+    @PostMapping("/list/{id}/review")
+    public void addReview(@PathVariable int id, ReviewDto reviewDto, HttpServletResponse response) throws IOException {
+        hospitalService.addReview(reviewDto, id);
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('리뷰 등록이 완료되었습니다.'); location.href='/hospital/list/" + id + "'</script>");
+        out.flush();
     }
 
     private static void modelAttributer(Model model, Pageable pageable, Page<Hospital> hospitals) {

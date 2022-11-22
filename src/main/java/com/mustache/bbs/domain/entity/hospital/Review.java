@@ -1,20 +1,20 @@
 package com.mustache.bbs.domain.entity.hospital;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @ToString
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
 public class Review {
 
     @Id
     @GeneratedValue
+    @Column(name = "review_id")
     private Integer id;
 
     @Column
@@ -23,7 +23,13 @@ public class Review {
     @Column
     private String content;
 
-    @Column(name = "hospital_id")
-    private Integer hospitalId;
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
 
+    public Review(String nickname, String content, Hospital hospital) {
+        this.nickname = nickname;
+        this.content = content;
+        this.hospital = hospital;
+    }
 }

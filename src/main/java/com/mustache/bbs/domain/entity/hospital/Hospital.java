@@ -1,18 +1,27 @@
 package com.mustache.bbs.domain.entity.hospital;
 
 import com.mustache.bbs.domain.dto.hospital.HospitalResponse;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "nation_wide_hospitals")
 public class Hospital {
 
     @Id
     @GeneratedValue
+    @Column(name = "hospital_id")
     private Integer id;
 
     @Column(name = "open_service_name")
@@ -59,6 +68,9 @@ public class Hospital {
 
     @Column(name = "total_area_size")
     private Float totalAreaSize;
+
+    @OneToMany(mappedBy = "hospital")
+    private List<Review> reviews = new ArrayList<>();
 
     //HospitalEntity를 HospitalResponse DTO로 만들어주는 부분
     public static HospitalResponse of(Hospital hospital) {
