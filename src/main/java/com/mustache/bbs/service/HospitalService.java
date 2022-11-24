@@ -1,6 +1,7 @@
 package com.mustache.bbs.service;
 
 import com.mustache.bbs.domain.dto.hospital.HospitalResponse;
+import com.mustache.bbs.domain.dto.hospital.ReviewAddResponse;
 import com.mustache.bbs.domain.dto.hospital.ReviewDto;
 import com.mustache.bbs.domain.entity.hospital.Hospital;
 import com.mustache.bbs.domain.entity.hospital.Review;
@@ -24,12 +25,14 @@ public class HospitalService {
 
 
     @Transactional
-    public void addReview(ReviewDto reviewDto, int id) {
+    public ReviewAddResponse addReview(ReviewDto reviewDto, int id) {
         Hospital hospital = hospitalRepository.findById(id).get();
         Review review = new Review(reviewDto.getNickname(), reviewDto.getContent(), hospital);
-        reviewRepository.save(review);
+        Review save = reviewRepository.save(review);
 
         hospital.setReviewCount(hospital.getReviews().size()+1);
+
+        return new ReviewAddResponse(save.getId(), save.getNickname(), save.getContent());
     }
 
     @Transactional
