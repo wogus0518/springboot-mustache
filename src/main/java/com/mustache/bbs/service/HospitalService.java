@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,18 @@ public class HospitalService {
         hospital.setReviewCount(hospital.getReviews().size()+1);
 
         return new ReviewAddResponse(save.getId(), save.getNickname(), save.getContent());
+    }
+
+    public List<ReviewDto> getReviews(int id) {
+        Hospital hospital = hospitalRepository.findById(id).orElse(null);
+        List<Review> reviews = hospital.getReviews();
+        List<ReviewDto> reviewDtoList = new ArrayList<>();
+
+        for (int i = 0; i < reviews.size(); i++) {
+            Review review = reviews.get(i);
+            reviewDtoList.add(new ReviewDto(review.getNickname(), review.getContent()));
+        }
+        return reviewDtoList;
     }
 
     @Transactional
