@@ -1,5 +1,6 @@
 package com.mustache.bbs.service;
 
+import com.mustache.bbs.domain.dto.hospital.HospitalExistReviewDto;
 import com.mustache.bbs.domain.dto.hospital.HospitalResponse;
 import com.mustache.bbs.domain.dto.hospital.ReviewAddResponse;
 import com.mustache.bbs.domain.dto.hospital.ReviewDto;
@@ -8,6 +9,7 @@ import com.mustache.bbs.domain.entity.hospital.Review;
 import com.mustache.bbs.repository.HospitalRepository;
 import com.mustache.bbs.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.apache.bcel.classfile.Field;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -46,6 +48,16 @@ public class HospitalService {
             reviewDtoList.add(new ReviewDto(review.getNickname(), review.getContent()));
         }
         return reviewDtoList;
+    }
+
+    public List<HospitalExistReviewDto> getHospitalExistReview(Pageable pageable) {
+        List<Hospital> hospitals = hospitalRepository.findByReviewCountGreaterThan(0, pageable).getContent();
+        List<HospitalExistReviewDto> dtoList = new ArrayList<>();
+        for (int i = 0; i < hospitals.size(); i++) {
+            Hospital hospital = hospitals.get(i);
+            dtoList.add(new HospitalExistReviewDto(hospital.getHospitalName(), hospital.getFullAddress(), hospital.getReviewCount()));
+        }
+        return dtoList;
     }
 
     @Transactional

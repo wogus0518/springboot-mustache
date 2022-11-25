@@ -3,8 +3,6 @@ package com.mustache.bbs.controller.hospital;
 import com.mustache.bbs.domain.dto.hospital.ReviewDto;
 import com.mustache.bbs.domain.dto.hospital.SearchDto;
 import com.mustache.bbs.domain.entity.hospital.Hospital;
-import com.mustache.bbs.domain.entity.hospital.Review;
-import com.mustache.bbs.repository.HospitalRepository;
 import com.mustache.bbs.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -80,7 +78,6 @@ public class HospitalController {
     public String showHospital(@PathVariable int id, Model model) {
         Hospital hospital = hospitalService.getHospitalById(id);
         model.addAttribute("hospital", hospital);
-        model.addAttribute("reviews", hospital.getReviews());
         return "hospital/show";
     }
 

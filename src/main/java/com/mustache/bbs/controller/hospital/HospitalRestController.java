@@ -1,6 +1,7 @@
 package com.mustache.bbs.controller.hospital;
 
 
+import com.mustache.bbs.domain.dto.hospital.HospitalExistReviewDto;
 import com.mustache.bbs.domain.dto.hospital.HospitalResponse;
 import com.mustache.bbs.domain.dto.hospital.ReviewAddResponse;
 import com.mustache.bbs.domain.dto.hospital.ReviewDto;
@@ -9,6 +10,8 @@ import com.mustache.bbs.domain.entity.hospital.Review;
 import com.mustache.bbs.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +50,16 @@ public class HospitalRestController {
         result.put("hospital_id", id);
         result.put("hospital_name", hospitalService.getHospitalById(id).getHospitalName());
 
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/reviews/exist")
+    public ResponseEntity<Map<String, Object>> getHospitalExistReview(Pageable pageable) {
+        List<HospitalExistReviewDto> dtoList = hospitalService.getHospitalExistReview(pageable);
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("data", dtoList);
+        result.put("count", dtoList.size());
         return ResponseEntity.ok().body(result);
     }
 }
